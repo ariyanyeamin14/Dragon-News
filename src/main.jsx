@@ -7,9 +7,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './layouts/Home.jsx';
-import News from './layouts/News.jsx';
-import Login from './layouts/Login.jsx';
 import CategoryNews from './pages/CategoryNews.jsx';
+import AuthLayout from './layouts/AuthLayout.jsx';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,12 +30,18 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "news",
-    element: <News></News>
-  },
-  {
-    path: "login",
-    element: <Login></Login>
+    path: "/auth",
+    element: <AuthLayout></AuthLayout>,
+    children: [
+      {
+        path: "/auth/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/auth/register",
+        element: <Register></Register>
+      }
+    ]
   },
   {
     path: "*",
