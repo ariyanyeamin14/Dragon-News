@@ -1,5 +1,6 @@
 import React from "react";
 import { FaEye, FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const NewsCard = ({ news }) => {
   const {
@@ -58,16 +59,13 @@ const NewsCard = ({ news }) => {
 
         {/* Details */}
         <p className="text-sm text-gray-700 mb-3">
-          {details.length > 100 ? `${details.slice(0, 100)}...` : details}
+          { details.length > 100 ? `${details.slice(0, 100)}...` : details }
         </p>
 
         {/* Read More Button */}
-        <a
-          href="#"
-          className="text-blue-600 hover:underline text-sm font-medium"
-        >
+        <Link to={`/news/details/${news._id}`} className="text-blue-600 hover:underline text-sm font-medium">
           Read More
-        </a>
+        </Link>
       </div>
     </div>
   );
