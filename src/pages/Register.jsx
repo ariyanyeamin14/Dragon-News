@@ -1,10 +1,11 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContex } from '../provider/AuthProvider';
 
 const Register = () => {
-    const { createUser } = useContext(AuthContex)
+    const { createUser, updateUserProfile } = useContext(AuthContex)
     const [error, setError] = useState()
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,7 +23,8 @@ const Register = () => {
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
-                // ...
+                updateUserProfile({displayName: name, photoURL: photo})
+                navigate("/")
             })
             .catch((error) => {
                 const errorCode = error.code;
